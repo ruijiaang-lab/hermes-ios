@@ -222,7 +222,30 @@ The generated app is written to `build/ios/iphonesimulator/Runner.app`.
 Installing on a physical iPhone or exporting an IPA additionally requires an
 Apple Developer team and signing configuration in Xcode.
 
-### Install on a personal iPhone with Xcode
+### iPhone with a Windows PC
+
+The upstream project does not provide a Windows-to-iPhone installation path,
+and this fork cannot change Apple's platform requirement: **Xcode and iOS
+code signing run on macOS, not Windows**. A Windows PC cannot directly build
+and install this Flutter iOS app with Visual Studio Code alone.
+
+Windows users can still use the app through one of these supported workflows:
+
+- **Recommended — use a Mac temporarily:** copy or clone this repository to a
+  Mac, install Flutter/Xcode/CocoaPods, then follow the Xcode steps below. The
+  iPhone can be connected to that Mac by USB, and the user signs the app with
+  their own Apple ID.
+- **Remote Mac:** use an available Mac through remote desktop or a Mac hosting
+  service, connect the iPhone to that Mac, and run the same Xcode workflow.
+- **CI/macOS runner:** use a macOS CI runner to build the project. This is
+  suitable for automated builds, but installing to an iPhone still requires
+  Apple signing and a way to register/provision the device; a Windows PC alone
+  cannot perform the final personal-signing step.
+
+VS Code on Windows can edit the Flutter project and run Dart analysis/tests,
+but it does not replace Xcode for iOS compilation, signing, or device
+installation.
+
 
 This is the recommended path for local testing and for other users who want to
 install their own copy without publishing to the App Store. Each person signs
