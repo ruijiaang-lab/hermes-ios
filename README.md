@@ -222,6 +222,34 @@ The generated app is written to `build/ios/iphonesimulator/Runner.app`.
 Installing on a physical iPhone or exporting an IPA additionally requires an
 Apple Developer team and signing configuration in Xcode.
 
+### Install on a personal iPhone with Xcode
+
+This is the recommended path for local testing and for other users who want to
+install their own copy without publishing to the App Store. Each person signs
+the app with their own Apple ID; no shared certificate or IPA is required.
+
+1. Install Xcode from the Mac App Store and sign in under **Xcode → Settings → Accounts**.
+2. Connect the iPhone by USB, unlock it, tap **Trust**, and enable **Developer Mode** on the iPhone if prompted.
+3. Open the workspace, not the project file:
+
+   ```bash
+   open ios/Runner.xcworkspace
+   ```
+
+4. In Xcode, select the **Runner** target → **Signing & Capabilities**:
+   - enable **Automatically manage signing**;
+   - choose your **Team** (Personal Team is sufficient);
+   - change **Bundle Identifier** to a unique value, for example
+     `com.yourname.hermes`.
+5. Select the connected iPhone as the run destination and press **Run**.
+6. If iOS says the developer is not trusted, open **Settings → General → VPN &
+   Device Management** on the iPhone, trust the developer profile, then launch
+   the app again.
+
+The same steps can be repeated by every user with their own Apple ID and unique
+Bundle Identifier. A Personal Team build is for that person's devices and is
+not a public distribution package; TestFlight, Ad Hoc, or App Store release
+requires the corresponding Apple Developer program distribution setup.
 ### Install the APK
 
 Download the latest APK from this repository's
