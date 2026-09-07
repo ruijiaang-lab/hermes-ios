@@ -2,7 +2,8 @@
 
 Cross-platform Flutter client for [Hermes Agent](https://hermes-agent.nousresearch.com/) — chat with your Hermes sessions from an Android phone, iPhone, or tablet over local Wi-Fi or a private Tailscale network.
 
-> This fork includes the iOS build configuration in addition to the original Android client. The iOS simulator build has been verified with Flutter 3.47.0 and Xcode 26.6.
+> **Source and attribution:** The Android application code is based on the upstream [Hermes Android](https://github.com/rusty4444/hermes-android) project. This fork preserves the upstream contributor credits and adds the iOS platform configuration and build documentation in `ios/`.
+
 
 > **v2.0.0** merges the community Remote Gateway edition contributed by
 > [@CristianGCiocoi](https://github.com/CristianGCiocoi), with review and
