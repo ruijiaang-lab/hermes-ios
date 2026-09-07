@@ -1,6 +1,8 @@
-# Hermes Android — v2.1.0
+# Hermes — Android & iOS v2.1.0
 
-Android client for [Hermes Agent](https://hermes-agent.nousresearch.com/) — chat with your Hermes sessions from a phone or tablet over local Wi-Fi or a private Tailscale network.
+Cross-platform Flutter client for [Hermes Agent](https://hermes-agent.nousresearch.com/) — chat with your Hermes sessions from an Android phone, iPhone, or tablet over local Wi-Fi or a private Tailscale network.
+
+> This fork includes the iOS build configuration in addition to the original Android client. The iOS simulator build has been verified with Flutter 3.47.0 and Xcode 26.6.
 
 > **v2.0.0** merges the community Remote Gateway edition contributed by
 > [@CristianGCiocoi](https://github.com/CristianGCiocoi), with review and
@@ -190,13 +192,34 @@ v2.0.0 merges the community Remote Gateway edition from
 
 ### Prerequisites
 
-- Android device or emulator (Android 8+).
+- Android 8+ device/emulator, or iPhone/iPad running iOS 15+.
+- For iOS development: macOS with Flutter, Xcode, and CocoaPods installed.
 - Hermes Agent installed on the host machine.
-- Hermes Gateway API Server reachable from the Android device.
+- Hermes Gateway API Server reachable from the mobile device.
 - `API_SERVER_KEY` from the Hermes host environment (`~/.hermes/.env`).
 - Optional: Hermes dashboard reachable for Memory/Cron/Skills/Settings screens.
 
 Hermes Agent docs: <https://hermes-agent.nousresearch.com/docs>
+
+### Run on iOS
+
+The iOS project is configured for iOS 15 or newer. From the repository root:
+
+```bash
+flutter pub get
+cd ios && pod install && cd ..
+flutter run -d ios
+```
+
+Build the simulator app without Apple signing:
+
+```bash
+flutter build ios --simulator
+```
+
+The generated app is written to `build/ios/iphonesimulator/Runner.app`.
+Installing on a physical iPhone or exporting an IPA additionally requires an
+Apple Developer team and signing configuration in Xcode.
 
 ### Install the APK
 
@@ -470,11 +493,26 @@ The Cron Jobs screen supports full CRUD:
 ## Development
 
 ```bash
-cd hermes-android
 flutter pub get
 flutter analyze
 flutter test
+
+# Android
 flutter run -d android
+
+# iOS simulator/device
+cd ios && pod install && cd ..
+flutter run -d ios
+```
+
+## Build iOS
+
+```bash
+# Simulator build — no Apple signing required
+flutter build ios --simulator
+
+# Physical-device build — Apple signing required
+flutter build ios --release
 ```
 
 ## Build release APKs
